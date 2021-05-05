@@ -1,0 +1,41 @@
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    in-memory: true
+    user: admin
+    password: admin
+    pool:
+      enabled: true
+      max-connections: 100
+  jms:
+    pub-sub-domain: true
+
+  kafka:
+    consumer:
+      group-id: foo
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  rabbitmq:
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+    host: 127.0.0.1
+    port: 5672
+    publisher-confirm-type: simple
+app:
+  topic: foo.t
+  queue: test
+
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: INFO
+    com.yiibai: DEBUG
